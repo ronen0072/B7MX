@@ -1,38 +1,195 @@
-.App {
-  text-align: center;
+:root {
+  --font-size: 1.3rem;
+  --fontColor: rgb(var(--fontColorVal));
+  --font-section-color: rgb(255, 255, 255);
+  --gold:  rgb(211, 166, 44);
+  --dark: rgb(255, 255, 255);
+  --navfoot: rgba(11, 11, 11, 0.89);
+  --sectionClor: rgb(36, 36, 36);
+  --homeColor: rgb(36, 36, 36);
+  /*rgb(49, 132, 143);*/
+  --fontTitle: rgb(34, 67, 79);
+  --transparent:rgba(143, 143, 143, 0);
+  --logo: rgb(255, 250, 246);
+  --skills-icon: rgb(255, 255, 255);
+  --my-container-margin: 10vw;
+  --product-info-padding: 2vw;
+  --product-content-padding: 1vw;
+  --section-padding: calc(1rem + 0.5vw);
+  /*--product-display-img-size: calc(22vh + 10vh);*/
+  --product-nav-link-height: 36px;
+  --product-display-info-margin-top-botton: calc(0.2rem + 0.2vw);
+  --product-display-img-padding: 1vw;
+  --product-title-top-margin: 1rem;
+  --product-title-font-size: calc(0.6vw + 1.8rem);
+  --product-title-font-height: calc(var(--product-title-top-margin) + var(--product-title-font-size) + var(--product-subtitle-font-size) + 14px);
+  --product-subtitle-font-size: calc(0.3vw + 0.9rem);;
+  --brand-font-size: 2rem;
+  --product-display-img-size-out: 1;
+  --product-display-img-size-in: 0.45;
+  --product-display-info-size-out: 0;
+  --product-display-info-size-in: 0.55;
+  --product-display-size: calc(55vw/2);
+  --product-display-speed-animation: 0.3s;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  font-family: Arimo,GeogrotesqueUltraLight,Arial,Helvetica,sans-serif;
+  font-size: 1.15rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+a{
+  text-decoration: none;
+}
+h3{
+  display: inline-block;
+}
+@media only screen and (max-width: 959px) {
+  :root {
+    --product-display-size: 52vw;
+    --product-display-img-size-in: 0.4;
+    --product-display-info-size-in: 0.6;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@media only screen and (max-width: 300px) {
+  :root {
+    --product-display-size: 65vw;
+    --product-display-img-size-in: 0.4;
+    --product-display-info-size-in: 0.6;
+  }
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes product-display-info-out-animation {
   from {
-    transform: rotate(0deg);
+    height: calc(var(--product-display-size)*var(--product-display-info-size-in));
   }
   to {
-    transform: rotate(360deg);
+    height: calc(var(--product-display-size)*var(--product-display-info-size-out));
   }
+}
+
+@keyframes product-display-info-in-animation {
+  from {
+    height: calc(var(--product-display-size)*var(--product-display-info-size-out));
+  }
+  to {
+    height: calc(var(--product-display-size)*var(--product-display-info-size-in));
+  }
+}
+
+.product-display-info-in {
+  height: calc(var(--product-display-size) * var(--product-display-info-size-in));
+  animation-name: product-display-info-in-animation;
+  animation-timing-function: ease-in;
+  animation-duration: var(--product-display-speed-animation);
+}
+.product-display-info-out{
+  height: calc(var(--product-display-size)*var(--product-display-info-size-out));
+  animation-name: product-display-info-out-animation;
+  animation-timing-function: ease-in;
+  animation-duration:  var(--product-display-speed-animation);
+}
+.product-display-info-initiali {
+  height: calc(var(--product-display-size)*var(--product-display-info-size-out));
+}
+.product-display-info{
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  line-height: 1.4em;
+  max-width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-background-clip: text;
+  font-weight: 500;
+  margin: var(--product-display-info-margin-top-botton) 0;
+}
+
+@keyframes product-display-img-in-animation {
+  from{
+    height: calc(var(--product-display-size)*var(--product-display-img-size-out));
+  }
+  to {
+    height: calc(var(--product-display-size)*var(--product-display-img-size-in));
+  }
+}
+
+@keyframes product-display-img-out-animation {
+  from {
+    height: calc(var(--product-display-size)*var(--product-display-img-size-in));
+  }
+  to {
+    height: calc(var(--product-display-size)*var(--product-display-img-size-out));
+  }
+}
+
+.product-display-img-in{
+  height: calc(var(--product-display-size)*var(--product-display-img-size-in));
+  animation-name: product-display-img-in-animation;
+  animation-timing-function: ease-in;
+  animation-duration:  var(--product-display-speed-animation);
+  overflow: hidden;
+}
+.product-display-img-out{
+  height: calc(var(--product-display-size)*var(--product-display-img-size-out));
+  animation-name: product-display-img-out-animation;
+  animation-timing-function: ease-in;
+  animation-duration: var(--product-display-speed-animation);
+  overflow: hidden;
+}
+.product-display-img {
+  background-repeat:no-repeat;
+  background-size: contain ;
+  background-color: var(--homeColor);
+  width: 100%;
+}
+.product-display-img-initiali {
+  height: calc(var(--product-display-size)*var(--product-display-img-size-out));
+}
+
+.button{
+  background-color: rgba(250,255,255,0.2);
+  height: 3.5vw;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button:hover{
+  background-color: rgba(255, 211, 89, 0.2);
+}
+
+
+button.social-login {
+  display: block;
+  margin-bottom: 20px;
+  width: 100% ;
+  max-width: 220px;
+  height: 36px;
+  border: none;
+  border-radius: 2px;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  transition: 0.2s ease;
+  cursor: pointer;
+  font-size: inherit;
+}
+button.social-login:hover,
+button.social-login:focus {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+
+button.social-login:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+
+button.social-login.facebook {
+  background: #32508E;
+}
+
+button.social-login.twitter {
+  background: #55ACEE;
+}
+
+button.social-login.google {
+  background: #DD4B39;
 }
