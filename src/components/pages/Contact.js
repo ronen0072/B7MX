@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
 import {Container, Grid, Fab, TextField} from "@material-ui/core";
 import Send from '@material-ui/icons/Send';
 import {makeStyles} from "@material-ui/core/styles";
@@ -6,26 +6,45 @@ import {makeStyles} from "@material-ui/core/styles";
 //import {sendMessage} from "../../store/actions/messagesActions";
 import Alert from "@material-ui/lab/Alert/Alert";
 import Carousel from "../layouts/Carousel";
+import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
+
+
 const useStyles = makeStyles(theme => ({
-    container: {
-        backgroundColor: 'rgba(232,189,229,0.07)',
-        color: '#ffffff',
-        textAlign: 'left',
-        minHeight: '200px',
-        padding: '80px 6%',
+    wrapper:{
+        position: 'relative',
     },
     title:{
         borderRadius: '70px',
         textAlign: 'center',
-        marginTop: '-130px',
         paddingTop: '30px',
         paddingBottom: '30px',
         backgroundColor: '#171717',
-
+        zIndex: 1,
     },
-    text:{
-        paddingRight: '2%',
-        textAlign: 'justify',
+    titleText:{
+        marginTop: 0,
+        marginBottom: 0,
+    },
+    open:{
+        marginTop: '-20px',
+        marginBottom: '-25px',
+        color: '#fff',
+        height: '54px',
+    },
+    icon:{
+        transform: 'rotate(-90deg)',
+        fontSize: '50px'
+    },
+    content:{
+        position: 'relative',
+        top: '-60px',
+        borderRadius: '0 0 70px 70px',
+        backgroundColor: '#f2f0ec',
+    },
+    padding:{
+        paddingTop: '50px',
+        paddingBottom: '40px',
+        paddingRight: '30px',
     },
     error: {
         height: '50px',
@@ -40,7 +59,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '30px',
         resize: 'none',
         outline: 'none',
-        padding: '10px 15px',
+        padding: '15px',
         marginTop: '40px',
         marginBottom: '40px',
         width: '100%',
@@ -68,6 +87,7 @@ export default function Contact(props){
         errorMsg: null,
         successMsg: null
     });
+    const [hover, setHover] = useState(false);
 
     // const ref = useRef();
     // useEffect(()=>{
@@ -134,71 +154,76 @@ export default function Contact(props){
         //handleClose();
     };
     return (
-        <Grid container className={classes.container}>
-            <Grid item xs={12} >
-                <h1 className={classes.title}>Contact Us</h1>
+        <Grid container className={classes.wrapper} onMouseOver={()=>{setHover(true)}} onMouseOut={()=>{setHover(false)}}>
+            <Grid item xs={12} className={classes.title} onClick={props.toggle}>
+                <h1 className={classes.titleText}>Contact Us</h1>
+                <div className={classes.open}>
+                    <ArrowBackIos  className={classes.icon +(props.open? ' fid-out' :(hover? ' fid-in-hover' : ' fid-in'))}/>
+                </div>
             </Grid>
-            <Grid item xs={12} className={classes.text}>
-                <form onSubmit={handleSubmit} style={{fontSize: props.fontSize+'px'}}>
-                    <Grid container className={classes.innerContent}>
-                        {/*<Grid item xs={12} className={classes.error}>*/}
-                        {/*    {state.errorMsg? <Alert severity="error"> {state.errorMsg} </Alert> : null}*/}
-                        {/*    {state.successMsg? <Alert severity="success"> {state.successMsg} </Alert> : null}*/}
-                        {/*</Grid>*/}
-                        <Grid item xs={12} sm={5} className={classes.inputWrap}>
-                            <TextField
-                                id="name"
-                                label="name"
-                                value={props.user? props.user.username : ''}
-                                InputProps={{
-                                    className: classes.input
-                                }}
-                                InputLabelProps={{
-                                    className: classes.input
-                                }}
-                                className={classes.input}
-                                onChange={handleChange}
-                            />
+            <Grid item xs={12} className={classes.content + (props.open? ' contact-open' : ' contact-close')}>
+                <div className={classes.padding}>
+                    <form onSubmit={handleSubmit} style={{fontSize: props.fontSize + 'px'}}>
+                        <Grid container className={classes.innerContent}>
+                            {/*<Grid item xs={12} className={classes.error}>*/}
+                            {/*    {state.errorMsg? <Alert severity="error"> {state.errorMsg} </Alert> : null}*/}
+                            {/*    {state.successMsg? <Alert severity="success"> {state.successMsg} </Alert> : null}*/}
+                            {/*</Grid>*/}
+                            <Grid item xs={12} sm={5} className={classes.inputWrap}>
+                                <TextField
+                                    id="name"
+                                    label="name"
+                                    value={props.user ? props.user.username : ''}
+                                    InputProps={{
+                                        className: classes.input
+                                    }}
+                                    InputLabelProps={{
+                                        className: classes.input
+                                    }}
+                                    className={classes.input}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={1} sm={2} className={classes.inputWrap}>
+                            </Grid>
+                            <Grid item xs={12} sm={5} className={classes.inputWrap}>
+                                <TextField
+                                    id="email"
+                                    label="Email"
+                                    value={props.user ? props.user.email : ''}
+                                    InputProps={{
+                                        className: classes.input
+                                    }}
+                                    InputLabelProps={{
+                                        className: classes.input
+                                    }}
+                                    className={classes.input}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <textarea
+                                    id="userMessage"
+                                    className={classes.userMessage} name="message"
+                                    placeholder="Write Us A Message"
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Fab
+                                variant="extended"
+                                color={"primary"}
+                                type="button"
+                                className={classes.sendButton}
+                                id="submitContactUs"
+                                name="submit contact Us"
+                                onClick={handleSubmit}
+                            >
+                                send <Send className={classes.sendIcon}/>
+                            </Fab>
+                            <br/>
                         </Grid>
-                        <Grid item xs={1} sm={2} className={classes.inputWrap}>
-                        </Grid>
-                        <Grid item xs={12} sm={5} className={classes.inputWrap}>
-                            <TextField
-                                id="email"
-                                label="Email"
-                                value={props.user? props.user.email : ''}
-                                InputProps={{
-                                    className: classes.input
-                                }}
-                                InputLabelProps={{
-                                    className: classes.input
-                                }}
-                                className={classes.input}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <textarea
-                                id="userMessage"
-                                className={classes.userMessage} name="message"
-                                placeholder="Write to us"
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Fab
-                            variant="extended"
-                            color={"primary"}
-                            type="button"
-                            className={classes.sendButton}
-                            id="submitContactUs"
-                            name="submit contact Us"
-                            onClick={handleSubmit}
-                        >
-                            send  <Send className={classes.sendIcon}/>
-                        </Fab>
-                        <br/>
-                    </Grid>
-                </form>
+                    </form>
+                </div>
             </Grid>
         </Grid>
     )

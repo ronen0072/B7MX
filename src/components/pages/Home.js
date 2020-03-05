@@ -1,24 +1,15 @@
 import React, { useState, useEffect} from 'react';
 import {Grid, Container} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
-import ProductDisplay from '../shopping/ProductDisplay'
+import Products from '../shopping/Products';
 
-var useStyles = makeStyles(theme => ({
+
+var useStyles = makeStyles({
     root: {
         flexGrow: 1,
         marginLeft: 'auto',
         marginRight: 'auto',
         height: '100%'
-    },
-    products:{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
     },
     opening: {
         backgroundColor: '#171717',
@@ -29,7 +20,7 @@ var useStyles = makeStyles(theme => ({
         marginBottom: '-140px',
         paddingBottom: '150px',
     },
-}));
+});
 
 
 function Home(props){
@@ -50,11 +41,7 @@ function Home(props){
                     {enHeader}
                 </Grid>
             </Grid>
-            <Grid container className={classes.products}>
-                {products.map((product)=>{
-                    return <ProductDisplay title={product.name} key={product.id}/>
-                })}
-            </Grid>
+            <Products/>
         </div>
     );
 }

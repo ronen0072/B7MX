@@ -6,7 +6,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-
+const interval = 5000;
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
@@ -83,7 +83,11 @@ function Carousel() {
 
     return (
         <div className={classes.root}>
+            <Paper square elevation={0} className={classes.header}>
+                <Typography>{tutorialSteps[activeStep].label}</Typography>
+            </Paper>
             <AutoPlaySwipeableViews
+                interval = {interval}
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={activeStep}
                 onChangeIndex={handleStepChange}
@@ -91,9 +95,6 @@ function Carousel() {
             >
                 {tutorialSteps.map((step, index) => (
                     <div key={step.label}>
-                        <Paper square elevation={0} className={classes.header}>
-                            <Typography>{tutorialSteps[activeStep].label}</Typography>
-                        </Paper>
                         {Math.abs(activeStep - index) <= 2 ? (
                             <img className={classes.img} src={step.imgPath} alt={step.label} />
                         ) : null}

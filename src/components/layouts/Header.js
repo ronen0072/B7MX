@@ -179,7 +179,7 @@ export default function Header(props) {
                 <Button className={classes.nuvLink} color="inherit" onClick={() => changeSelection(1)} >About Us</Button>
                 <Button className={classes.nuvLink} color="inherit" onClick={() => changeSelection(2)}>Contact Us</Button>
                 {/*{props.auth.isAuthenticated &&*/}
-                    <NavLink to='/My Order' ><Button className={classes.nuvLink} color="inherit">My Order</Button></NavLink>
+                    <Button className={classes.nuvLink} color="inherit" onClick={() => changeSelection(2)}>My Order</Button>
                 {/*}*/}
             </Hidden>
         )

@@ -15,15 +15,17 @@ var useStyles = makeStyles(theme => ({
         borderRadius: '30px',
         overflow: 'hidden',
         display: 'block',
-        backgroundColor: 'black',
+        backgroundColor: '#50423c',
         margin: '20px',
         color: 'white',
+
     },
     content:{
-        backgroundColor: 'rgba(0,0,0,0.9)',
+        backgroundColor: 'rgba(12,12,12,0.9)',
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'flex-end',
+        boxShadow: ' 0px -5px 20px 0px rgba(0,0,0,0.5)',
     },
     img:{
         width: '100%'

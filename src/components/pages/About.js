@@ -5,25 +5,27 @@ import Carousel from '../layouts/Carousel';
 
 var useStyles = makeStyles({
     container: {
-        backgroundColor: 'rgba(65,132,214,0.55)',
-        color: '#ffffff',
+        backgroundColor: '#b8d7cd',
+        color: '#000',
         textAlign: 'left',
         minHeight: '200px',
-        padding: '80px 6%',
-        marginTop: '50px',
+        padding: '80px 6% 120px',
+        marginTop: '40px',
     },
     title:{
+        color: '#fff',
         borderRadius: '0 0 70px 70px',
         textAlign: 'center',
         marginTop: '-80px',
         paddingTop: '30px',
         paddingBottom: '30px',
         backgroundColor: '#171717',
-
+        marginBottom: 'calc(5px + 2vw)',
     },
     text:{
         paddingRight: '2%',
         textAlign: 'justify',
+        marginBottom: '20px'
     },
 });
 function About(props){

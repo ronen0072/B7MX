@@ -14,7 +14,6 @@ const useStyles = makeStyles({
         left: 0,
         position: 'fixed',
         backgroundColor: '#0b0b0b',
-        zIndex: 2,
     },
     nuvLink:{
         lineHeight: '2rem',

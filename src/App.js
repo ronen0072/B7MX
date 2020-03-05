@@ -9,7 +9,7 @@ import queryString from "query-string";
 import {Header, Footer} from './components/layouts';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
-import Contact from './components/pages/Contact';
+import ContactAndOrders from './components/pages/ContactAndOrders';
 
 import './App.css';
 const theme = createMuiTheme({
@@ -78,9 +78,8 @@ class App extends Component{
                             <About changeSelection={this.changeSelection}/>
                         </div>
                         <div ref={this.contact}>
-                            <Contact/>
+                            <ContactAndOrders/>
                         </div>
-                        <Route path='/my order' component={Contact} />
                         <Footer />
                     </MuiThemeProvider>
                 </div>
