@@ -1,6 +1,7 @@
 import React, {Fragment ,useState, useRef, useEffect} from 'react';
+// import { connect } from 'react-redux'
+// import firebase from "firebase";
 import { NavLink } from 'react-router-dom';
-//import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import {
     AppBar,
@@ -142,7 +143,7 @@ export default function Header(props) {
                             </ListItem>
 
                     ))}
-                    {/*{props.auth.isAuthenticated &&*/}
+                    {/*{props.auth.isLogin &&*/}
                         <NavLink to='/Words List'  onClick={toggleDrawer(side, false)}>
                             <ListItem button className={classes.practiceItem}>
                                 <ListItemIcon> <Icon>shopping-cart-two-tone</Icon> </ListItemIcon>
@@ -153,7 +154,7 @@ export default function Header(props) {
                 </List>
                 <Divider />
                 <List>
-                    {/*{!props.auth.isAuthenticated?*/}
+                    {/*{!props.auth.isLogin?*/}
                     <AuthWith>
                         <ListItem button key={'Login'} >
                             {/*<ListItemIcon> </ListItemIcon>*/}
@@ -178,7 +179,7 @@ export default function Header(props) {
                 <Button className={classes.nuvLink} color="inherit" onClick={() => changeSelection(0)}>Home</Button>
                 <Button className={classes.nuvLink} color="inherit" onClick={() => changeSelection(1)} >About Us</Button>
                 <Button className={classes.nuvLink} color="inherit" onClick={() => changeSelection(2)}>Contact Us</Button>
-                {/*{props.auth.isAuthenticated &&*/}
+                {/*{props.auth.isLogin &&*/}
                     <Button className={classes.nuvLink} color="inherit" onClick={() => changeSelection(2)}>My Order</Button>
                 {/*}*/}
             </Hidden>
@@ -195,7 +196,7 @@ export default function Header(props) {
                 {mdBar()}
                 <div className={classes.alignRight}>
                     <Hidden xsDown>
-                        {/*{!props.auth.isAuthenticated? */}
+                        {/*{!props.auth.isLogin?*/}
                             <AuthWith/>
                              {/*:*/}
                             <Logout/>
@@ -214,8 +215,10 @@ export default function Header(props) {
         </AppBar>
     );
 }
-// const mapStateToProps = (state)=>({
-//     auth: state.auth
-// });
+// const mapStateToProps = (state) => {
+//     return{
+//         isLogin: !state.firebase.auth.isEmpty
+//     }
+// };
 //
-// export default connect(mapStateToProps)(Header);
+// export default connect(mapStateToProps, null)(Header);

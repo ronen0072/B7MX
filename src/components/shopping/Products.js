@@ -1,7 +1,10 @@
 import React, {Fragment, useState} from 'react';
+// import { firestoreConnect } from 'react-redux-firebase';
+// import { connect } from 'react-redux';
+// import { compose } from 'redux';
 import ProductDisplay from './ProductDisplay';
 import {makeStyles} from "@material-ui/core/styles";
-//import { connect } from 'react-redux';
+
 import {Grid} from "@material-ui/core";
 
 var useStyles = makeStyles({
@@ -29,9 +32,16 @@ export default function Products(props){
         </Grid>
     )
   }
-  // const mapStateToProps =(state)=>{
-  //   return{
-  //       state: state,
-  //   }
-  // };
-  // export default connect(mapStateToProps)(Product);
+// const mapStateToProps = (state)=>{
+//     return{
+//         //projects: state.project.projects
+//         products: state.firestore.ordered.products
+//     };
+// };
+//
+// export default compose(
+//     connect(mapStateToProps),
+//     firestoreConnect([
+//         { collection: 'products' }
+//     ])
+// )(Products)

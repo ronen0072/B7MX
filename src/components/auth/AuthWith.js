@@ -1,4 +1,7 @@
 import React, {Fragment} from 'react';
+// import { connect } from 'react-redux'
+// import firebase from "firebase";
+import { loginFacebook } from '../../store/actions/authActions'
 import Facebook from '@material-ui/icons/Facebook';
 import {makeStyles} from "@material-ui/core/styles";
 import {Button} from "@material-ui/core";
@@ -34,7 +37,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
 }));
- function AuthWith(props){
+export default function AuthWith(props){
     const classes = useStyles();
     return(
         <PopModal
@@ -62,4 +65,16 @@ const useStyles = makeStyles(theme => ({
         </PopModal>
     );
 }
-export default AuthWith;
+// const mapStateToProps = (state) => {
+//     return{
+//         authError: state.auth.authError,
+//         isLogin: !state.firebase.auth.isEmpty
+//     }
+// };
+//
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         loginFacebook: (creds) => dispatch(loginFacebook(creds))
+//     }
+// };
+// export default connect(mapStateToProps, mapDispatchToProps)(AuthWith);

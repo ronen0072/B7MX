@@ -1,49 +1,49 @@
 //import firebase from "../../config/fbConfig";
 
 
-export const createProject = (project) => {
+export const createProducts = (product) => {
     return (dispatch, getState,{ getFirebace, getFirestore }) => {
       const firestore = getFirestore();
-      const isAdmin = getState().firebase.profile.admin;
-      console.log("is he admin",isAdmin);
-      if(isAdmin){
-        firestore.collection('projects').add({
-            title: project.title,
-            sub_title: project.sub_title,
-            content: project.content,
+      //const isAdmin = getState().firebase.profile.admin;
+      //console.log("is he admin",isAdmin);
+      //if(isAdmin){
+        firestore.collection('products').add({
+            title: product.title,
+            sub_title: product.sub_title,
+            content: product.content,
             date: new Date(),
-            imgFileName: project.title.replace(" ", "")+project.sub_title.replace(" ", ""),
-            languages: project.languages,
-            libraries: project.libraries,
-            githubURL: project.githubURL,
-            webURL: project.webURL
+            imgFileName: product.title.replace(" ", "")+product.sub_title.replace(" ", ""),
+            languages: product.languages,
+            libraries: product.libraries,
+            githubURL: product.githubURL,
+            webURL: product.webURL
         }).then(()=>{
-          dispatch({ type: 'CREATE_PROJECT', project });
+          dispatch({ type: 'CREATE_PROJECT', product });
         }).catch((err)=>{
           dispatch({ type: 'CREATE_PROJECT_ERROR)', err })
         });
       }
-    }
+    //}
 };
-export const updateProject = (project) => {
+export const updateProducts = (product) => {
   return (dispatch, getState,{ getFirebace, getFirestore }) => {
     const firestore = getFirestore();
 
-    console.log("firestore.collection('projects').doc(project.id)",firestore.collection('projects').doc(project.id));
-    let  p = firestore.collection('projects').doc(project.id).update({
-        title: project.title,
-        sub_title: project.sub_title,
-        content: project.content,
+    console.log("firestore.collection('products').doc(product.id)",firestore.collection('products').doc(product.id));
+    let  p = firestore.collection('products').doc(product.id).update({
+        title: product.title,
+        sub_title: product.sub_title,
+        content: product.content,
         date: new Date(),
-        imgFileName: project.title.replace(" ", "")+project.sub_title.replace(" ", ""),
-        languages: project.languages,
-        libraries: project.libraries,
-        githubURL: project.githubURL?  project.githubURL: "",
-        webURL: project.webURL?  project.webURL: ""
-    // }).then((updateProject)=>{
-    //     console.log("updateProject");
-    //     console.log(updateProject);
-    //     dispatch({ type: 'UPDATE_PROJECT', project });
+        imgFileName: product.title.replace(" ", "")+product.sub_title.replace(" ", ""),
+        languages: product.languages,
+        libraries: product.libraries,
+        githubURL: product.githubURL?  product.githubURL: "",
+        webURL: product.webURL?  product.webURL: ""
+    // }).then((updateProducts)=>{
+    //     console.log("updateProducts");
+    //     console.log(updateProducts);
+    //     dispatch({ type: 'UPDATE_PROJECT', product });
     // }).catch((err)=>{
     //     dispatch({ type: 'UPDATE_PROJECT_ERROR)', err })
     });
