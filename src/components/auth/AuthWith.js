@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
-// import { connect } from 'react-redux'
-// import firebase from "firebase";
-import { loginFacebook } from '../../store/actions/authActions'
+import { connect } from 'react-redux'
+import firebase from "firebase";
+import { loginFacebook, loginGoogle } from '../../store/actions/authActions'
 import Facebook from '@material-ui/icons/Facebook';
 import {makeStyles} from "@material-ui/core/styles";
 import {Button} from "@material-ui/core";
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
 }));
-export default function AuthWith(props){
+function AuthWith(props){
     const classes = useStyles();
     return(
         <PopModal
@@ -58,23 +58,23 @@ export default function AuthWith(props){
             <div className={classes.socialNetwork}>
 
 
-                <a  href="http://localhost:5000/auth/facebook" ><button className="social-login facebook">Log in with facebook  <Facebook/></button></a>
-                <a  href="http://localhost:5000/auth/google" ><button className="social-login google">Log in with Google+</button></a>
-
+                <button onClick={props.loginGoogle} className="social-login facebook">Log in with facebook  <Facebook/></button>
+                <button onClick={props.loginGoogle} className="social-login google">Log in with Google+</button>
             </div>
         </PopModal>
     );
 }
-// const mapStateToProps = (state) => {
-//     return{
-//         authError: state.auth.authError,
-//         isLogin: !state.firebase.auth.isEmpty
-//     }
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         loginFacebook: (creds) => dispatch(loginFacebook(creds))
-//     }
-// };
-// export default connect(mapStateToProps, mapDispatchToProps)(AuthWith);
+const mapStateToProps = (state) => {
+    return{
+        // authError: state.auth.authError,
+        isLogin: !state.firebase.auth.isEmpty
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginFacebook: () => dispatch(loginFacebook()),
+        loginGoogle: () => dispatch(loginGoogle())
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AuthWith);

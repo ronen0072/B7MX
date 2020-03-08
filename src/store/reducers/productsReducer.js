@@ -3,7 +3,7 @@ const initState = {
     projectToDisplay: null,
     projectToEdit: null
 };
-const productstReducer = (state = initState, action)=>{
+const productsReducer = (state = initState, action)=>{
     switch(action.type){
         case 'CREATE_PRODUCTS':
             console.log('create project', action.project);
@@ -21,4 +21,4 @@ const productstReducer = (state = initState, action)=>{
             return state;
     }
 };
-export default productstReducer;
+export default productsReducer;

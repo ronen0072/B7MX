@@ -89,7 +89,7 @@ export default function ProductDisplay (props){
             onMouseLeave={onblur}
         >
             <div
-                style={{backgroundImage: 'url("' + publicURL + props.title + '.jpg")', backgroundSize: '100%'}}
+                style={{backgroundImage: 'url("' + publicURL + props.imgFileName + '.jpg")', backgroundSize: '100%'}}
             >
                 <div className={(isHover? 'product-display-img-in' : 'product-display-img-out')}/>
 

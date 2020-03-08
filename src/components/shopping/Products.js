@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
-// import { firestoreConnect } from 'react-redux-firebase';
-// import { connect } from 'react-redux';
-// import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import ProductDisplay from './ProductDisplay';
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -21,27 +21,28 @@ var useStyles = makeStyles({
     },
 });
 
-export default function Products(props){
+function Products(props){
     let classes = useStyles();
     const [products, setProducts] =  useState([{id: 1, name: 'White shirt'},{id: 2, name: 'Black shirt'}]);
     return(
         <Grid container className={classes.products}>
-            {products.map((product)=>{
-                return <ProductDisplay title={product.name} key={product.id}/>
+            {props.products && props.products.map((product)=>{
+                return <ProductDisplay title={product.name} imgFileName={product.imgFileName} key={product.id}/>
             })}
         </Grid>
     )
   }
-// const mapStateToProps = (state)=>{
-//     return{
-//         //projects: state.project.projects
-//         products: state.firestore.ordered.products
-//     };
-// };
-//
-// export default compose(
-//     connect(mapStateToProps),
-//     firestoreConnect([
-//         { collection: 'products' }
-//     ])
-// )(Products)
+const mapStateToProps = (state)=>{
+    console.log('state: ', state);
+    return{
+        //projects: state.project.projects
+        products: state.firestore.ordered.products
+    };
+};
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'products' }
+    ])
+)(Products)
